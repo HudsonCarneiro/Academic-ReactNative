@@ -2,12 +2,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import ProductsScreen from '../screens/ProductsScreen';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import { RootStackParamList } from '../types/navigation';
 
-export type RootStackParamList = {
-  Login: undefined;
-  Products: undefined;
-  ProductDetails: { productId: number };
-};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

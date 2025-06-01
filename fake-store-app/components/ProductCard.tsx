@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Product, ProductCardProps } from '../types';
+import { Product, ProductCardProps } from '../types/product';
 
 export default function ProductCard({ product, onPress }: ProductCardProps) {
   return (
