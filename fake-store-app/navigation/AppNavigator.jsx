@@ -1,11 +1,10 @@
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '../screens/LoginScreen';
-import ProductsScreen from '../screens/ProductsScreen';
-import ProductDetailsScreen from '../screens/ProductDetailsScreen';
-import { RootStackParamList } from '../types/navigation';
+import LoginScreen from '../screens/Login';
+import ProductsScreen from '../screens/Products';
+import ProductDetailsScreen from '../screens/ProductDetails';
 
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
   return (

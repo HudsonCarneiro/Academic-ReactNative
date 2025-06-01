@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FAVORITES_KEY = 'favorites';
 
-export const getFavorites = async (): Promise<number[]> => {
+export const getFavorites = async () => {
   try {
     const favorites = await AsyncStorage.getItem(FAVORITES_KEY);
     return favorites ? JSON.parse(favorites) : [];
@@ -12,7 +12,7 @@ export const getFavorites = async (): Promise<number[]> => {
   }
 };
 
-export const toggleFavorite = async (productId: number): Promise<boolean> => {
+export const toggleFavorite = async (productId) => {
   try {
     const favorites = await getFavorites();
     const newFavorites = favorites.includes(productId)
@@ -27,7 +27,7 @@ export const toggleFavorite = async (productId: number): Promise<boolean> => {
   }
 };
 
-export const isFavorite = async (productId: number): Promise<boolean> => {
+export const isFavorite = async (productId) => {
   const favorites = await getFavorites();
   return favorites.includes(productId);
 };

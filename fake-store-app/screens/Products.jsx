@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, FlatList, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { useNavigation } from '@react-navigation/native';
@@ -51,9 +51,9 @@ export default function ProductsScreen() {
       data={products}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <ProductCard 
-          product={item} 
-          onPress={() => handleProductPress(item.id)} 
+        <ProductCard
+          product={item}
+          onPress={() => handleProductPress(item.id)}
         />
       )}
       contentContainerStyle={styles.list}
