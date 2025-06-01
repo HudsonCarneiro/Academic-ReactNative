@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/Login';
 import ProductsScreen from '../screens/Products';
 import ProductDetailsScreen from '../screens/ProductDetails';
+import FavoritesScreen from '../screens/Favorites';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ export default function AppNavigator() {
         name="ProductDetails" 
         component={ProductDetailsScreen} 
         options={{ title: 'Detalhes' }}
+      />
+      <Stack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{ title: 'Favoritos' }}
       />
     </Stack.Navigator>
   );

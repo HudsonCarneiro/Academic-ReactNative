@@ -1,5 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, StyleSheet, Text } from 'react-native';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  Button,
+} from 'react-native';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { useNavigation } from '@react-navigation/native';
@@ -8,6 +15,7 @@ export default function ProductsScreen() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [favorites, setFavorites] = useState([]); 
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -26,8 +34,27 @@ export default function ProductsScreen() {
     fetchProducts();
   }, []);
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          title="Favoritos"
+          onPress={() => navigation.navigate('Favorites', { favorites })}
+        />
+      ),
+    });
+  }, [navigation, favorites]);
+
   const handleProductPress = (productId) => {
     navigation.navigate('ProductDetails', { productId });
+  };
+
+  const toggleFavorite = (product) => {
+    setFavorites((prev) =>
+      prev.find((p) => p.id === product.id)
+        ? prev.filter((p) => p.id !== product.id)
+        : [...prev, product]
+    );
   };
 
   if (loading) {
@@ -53,7 +80,10 @@ export default function ProductsScreen() {
       renderItem={({ item }) => (
         <ProductCard
           product={item}
-          onPress={() => handleProductPress(item.id)}
+          onPress={() => {
+            handleProductPress(item.id);
+            toggleFavorite(item); 
+          }}
         />
       )}
       contentContainerStyle={styles.list}
